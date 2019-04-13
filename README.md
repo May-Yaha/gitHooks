@@ -1,3 +1,15 @@
-# git提交代码时检测
+# git hooks
 
-## 目前只检测了php代码语法错误和断点信息，在`git commit`时触发
+## 目录结构
+
+```
+./
+├── README.md
+└── php-hooks   // php相关检测
+```
+
+## 使用说明
+
+如`git commit`时需要进行自动代码检查，则将`pre-commit.sample`文件下载或拷贝在项目的`.git/hooks/pre-commit`中
+
+
