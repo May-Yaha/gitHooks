@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# 1、介绍git hooks
+# 2、选择对应的操作
+# 3、输入项目路径
+# 4、cp对应文件
+
+# 概述
+summary(){
+	echo "
++------------------+
+|     GitHooks     |
++------------------+
+"
+
+# echo "使用方法:
+#   	deploy [options] [arguments]
+
+# Options:
+# 	-p，需要接入git hooks的项目路径
+# "
+}
+
+# 检查git文件夹是否存在
+choose_git_path(){
+
+	read -p "请输入项目地址:" -e path
+
+	if [[ ! -d ${path} ]]; then
+		echo "没有发现项目路径"
+		exit 1
+	fi
+
+	project_git_path=${path}'/.git/hooks'
+
+	if [[ ! -d ${project_git_path} ]]; then
+		echo "项目中没有发现git仓库"
+		exit 2
+	fi
+}
+
+# 选择需要进行的git操作
+choose_git_option(){
+	echo '----需要进行检查的操作----'
+	echo '1）git commit时检查'
+
+	read -p '请选择需要的操作:' -n 1 -e choose
+
+	case ${choose} in
+		1 )
+			cp -r ${bash_path}'/php-hooks/pre-commit.sample' ${project_git_path}'/pre-commit'
+			;;
+		* )
+			echo '输入有误！'
+	esac
+}
+
+# 当前项目的基本路径
+
+# 操作类型
+# Option=${1}
+
+# case "${Option}" in
+# 	-p )
+# 		Path=${2}
+# 		;;
+# 	* )
+# 		summary
+
+# 		exit 3
+# 		;;
+# esac
+
+# has_git_path ${Path}
+
+summary
+
+bash_path=$(pwd)
+
+choose_git_path
+
+choose_git_option
+
+echo '添加完成！'
+
+

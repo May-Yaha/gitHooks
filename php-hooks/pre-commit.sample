@@ -5,6 +5,9 @@ git diff --cached
 
 while read st file
 do
+    if [[ ! -f "${file}" ]]; then
+        continue
+    fi
     # 文件末为不是 .php 时输出文件，并跳出本次循环
     if [[ ! "${file}"  =~ (\.php$) ]]
     then
