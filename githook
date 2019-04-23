@@ -56,6 +56,7 @@ choose_git_option(){
 }
 
 # 当前项目的基本路径
+bash_path=$(cd `dirname $0`; pwd)
 
 # 操作类型
 # Option=${1}
@@ -74,8 +75,6 @@ choose_git_option(){
 # has_git_path ${Path}
 
 summary
-
-bash_path=$(pwd)
 
 choose_git_path
 
